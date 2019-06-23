@@ -68,3 +68,8 @@ mtproxy(options)
 ### Ревизия от Fossa
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmtproto-org%2Fproxy.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmtproto-org%2Fproxy?ref=badge_large)
+
+
+### Кто сделал? Мы
+_**Aliase Network**: Open Source Initiative_<br>
+_K.Sobolev & D.Shaymurzin for everyone_
