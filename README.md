@@ -16,7 +16,7 @@
 3. `cd && mkdir mtproxy && cd mtproxy`
 4. `npm install @mtproto-org/mtproxy`
 5. `touch *.js`
-6. Создайте файл с любыми именем (`*.js` - это имя вашего файла) в вставьте код ниже в файл.
+6. Создайте файл с любыми именем (`*.js` - это имя вашего файла) и вставьте код ниже в файл.
 ```javascript
 const mtproxy = require('@mtproto-org/mtproxy')
 
