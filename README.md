@@ -6,50 +6,47 @@
 
 1. Абсолютно чистый сервер с ОС Ubuntu 16.04 или старше
 2. Любой процессор/ОЗУ/диск (хотя бы: 1 ядро, 512 Мб ОЗУ, 5 ГБ диска)
-3. Свободный порт и отсутствие любого файерволла (желательно)
+3. Свободный порт и отсутствие любого файерволла (никакого NAT, желательно)
 
-### Использование
+### Установка и запуск
 
+1. `sudo apt-get -y update && sudo apt-get -y upgrade`
+2. `sudo apt-get -y install curl && curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash`
+3. `sudo apt-get install -y nodejs && npm install pm2 -g`
+4. `cd && mkdir -p mtproto_org && cd mtproto_org`
+5. `npm install @mtproto-org/mtproxy`
+6. Создайте файл `mtproxy.js` и вставьте туда следующее:
 ```javascript
 const mtproxy = require('@mtproto-org/mtproxy');
 
 mtproxy()
 ```
-
-1. `sudo apt-get update`
-2. `sudo apt-get upgrade`
-3. `sudo apt-get install -y nodejs`
-4. `sudo apt-get install -y npm`
-5. `sudo apt-get install -y git`
-6. `npm install pm2 -g`
-7. `cd && mkdir mtproto && cd mtproto`
-8. `npm install @mtproto-org/mtproxy`
-9. `pm2 start *.js -i max`
+7. Сохраните файл и выполните команду: `pm2 start mtproxy.js -i max`
 
 #### Дополнительные настройки
-Перейдите в папку, где лежит `*.js` и выполните одну из команд:
+Перейдите в папку, где лежит `mtproxy.js` и выполните одну из команд:
 
-1. Запустить: `pm2 start *.js -i max`
-2. Перезапустить: `pm2 restart *.js`
-3. Выключить: `pm2 stop *.js`
+1. Запустить: `pm2 start mtproxy.js -i max`
+2. Перезапустить: `pm2 restart mtproxy.js`
+3. Выключить: `pm2 stop mtproxy.js`
 
 ### Что дальше?
 По умолчанию:
 1. Порт для подключения: `2233`
 2. Секретный ключ: `11112222333344445555666677778888`
-Для того чтобы изменить его, передайте объект в mtproxy();
 
-- **Объект**
-  - `port`: (Number)
-  - `secret` : (String)
+Для того чтобы изменить "порт" или "секретный ключ", смените переменную в `mtproxy()`:
 
-Далее
+  - `port`: (Number, **максимально до 5 числовых символов**)
+  - `secret` : (String, **формат - hex32, обязательно 32 символа**)
+
+Итоговый вариант, со своими переменными, выглядит так:
 ```javascript
 const mtproxy = require('@mtproto-org/mtproxy');
 
 mtproxy({
-    port: 1122,
-    secret: '11112222333344445555666677778888'
+    port: 1234,
+    secret: '11112222444455559999888877776666'
 })
 ```
 
@@ -64,7 +61,7 @@ mtproxy({
 5. `Добавить прокси`
 6. Выберите `MTPROTO`
 7. Хост - IP-адрес сервера или его `hostname`
-8. Порт - ввежите порт прокси-сервера (по умолчанию: 2233)
+8. Порт - ввежите порт прокси-сервера (по умолчанию: `2233`)
 9. Ключ - введите ключ прокси-сервера (по умолчанию: `11112222333344445555666677778888`)
 10. Нажмите кнопку `Сохранить`
 11. Как только сервер добавится в список ваших прокси, выберите его и дождитесь статуса `Подключён`
